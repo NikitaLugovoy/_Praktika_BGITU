@@ -109,7 +109,7 @@ int _tmain()
 	SetConsoleCP(1251);//руссификация ввода
 	SetConsoleOutputCP(1251);//руссификация вывода 
 
-	cout << "Поебень \n\n\n";//вывод
+	cout << "Практика в команде \n\n\n";//вывод
 
 
 	int kolvocheloveki;
