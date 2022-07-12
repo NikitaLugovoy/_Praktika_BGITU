@@ -52,7 +52,46 @@ void menu()
 		<< "Введите пункт: " << endl;
 }
 
+void sort(cheloveki* chel, int kolvocheloveki) // сортировка
+{
+	for (int i = 0; i < kolvocheloveki; i++) // итерация по всем элементам 
+	{
+		for (int j = kolvocheloveki - 1; j > i; j--) // цикл по неотсортированной части.
+			if (chel[j - 1].Age > chel[j].Age)  // Сравниваем текущий, (j-1)-ый элемент// со следующим.
+				swap(chel[j - 1], chel[j]); // меняем предшествующий элемент со следующим
+		cout << chel[i].F <<" "<< chel[i].I <<" "<< chel[i].O <<"\n";
+	}
 
+}
+
+void vizovsort(cheloveki* chel, int kolvocheloveki) // сортировка
+{
+	cout <<"Сортировка людей по возрасту(возрастание):"<<"\n";
+	sort(chel, kolvocheloveki);
+}
+
+void alphabetSort(cheloveki* chel, int first, int kolvocheloveki)
+{
+	if (first >= kolvocheloveki - 1) return;
+	int med = (first + kolvocheloveki) / 2; // вычисление среднего элемента
+	alphabetSort(chel, first, med); // сортировка левой части
+	alphabetSort(chel, med, kolvocheloveki); // сортировка правой части
+	cheloveki* b = new cheloveki[kolvocheloveki - first];
+	for (int i = first; i < kolvocheloveki; ++i) b[i - first] =chel[i]; // выполняется от начала до конца
+	int levo = 0, pravo = med - first;
+	for (int i = first; i < kolvocheloveki; ++i) // возвращение результата в список
+	{
+		if (levo == med - first)
+			chel[i] = b[pravo++];
+		else if (pravo == kolvocheloveki - first)
+			chel[i] = b[levo++];
+		else if (strcmp(b[levo].F, b[pravo].F) < 0)
+			chel[i] = b[levo++];
+		else
+			chel[i] = b[pravo++];
+	}
+	delete[] b;
+}
 
 void vizovsortalph(cheloveki* chel, int kolvocheloveki)
 {
