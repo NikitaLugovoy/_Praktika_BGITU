@@ -15,7 +15,6 @@ using namespace std;
 
 struct tabl //структура
 {
-	char tab4[50];
 	int b;
 
 }tab[200];
